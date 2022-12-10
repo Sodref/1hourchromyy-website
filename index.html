@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>1 hour Chromyy</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: sans-serif;
+      }
+
+      #timer {
+        font-size: 36px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>1 hour Chromyy</h1>
+    <p>The clock goes tick and tock</p>
+    <div id="timer">1:00:00</div>
+  </body>
+</html>
+<script>
+  // set initial time for timer
+  let time = 3600;
+
+  // create function to update timer
+  function updateTimer() {
+    // calculate the number of seconds, minutes, and hours
+    let hours = Math.floor(time / 3600);
+    let minutes = Math.floor((time % 3600) / 60);
+    let seconds = time % 60;
+
+    // format the time string with leading zeroes
+    let timeString = `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+    // update the timer div with the time string
+    document.querySelector("#timer").innerHTML = timeString;
+
+    // decrease the time by 1 second
+    time--;
+
+    // stop the timer when it reaches 0
+    if (time < 0) {
+      clearInterval(interval);
+    }
+  }
+
+  // run the updateTimer function every second
+  let interval = setInterval(updateTimer, 1000);
+</script>
